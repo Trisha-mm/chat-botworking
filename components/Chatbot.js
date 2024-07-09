@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { View, TextInput, Button, Text, ScrollView, StyleSheet } from 'react-native';
 import OpenAI from 'openai';
 
-const openai = new OpenAI({ apiKey: 'sk-proj-C5HjgwFQl6a262vq0HA4T3BlbkFJgrW4eN7rE4iuBBwMqxFp' });
+const openai = new OpenAI({ apiKey: '' });
 
 function Chatbot() {
   const [messages, setMessages] = useState([
