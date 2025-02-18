@@ -1,9 +1,13 @@
-// components/Chatbot.js
+// chabot.js
 import React, { useState } from 'react';
 import { View, TextInput, Button, Text, ScrollView, StyleSheet } from 'react-native';
 import OpenAI from 'openai';
+import { Avatar } from 'react-native-elements';
 
-const openai = new OpenAI({ apiKey: '' });
+// Import the API key from your .env file using react-native-dotenv
+import { OPENAI_API_KEY } from '@env';
+
+const openai = new OpenAI({ apiKey: OPENAI_API_KEY });
 
 function Chatbot() {
   const [messages, setMessages] = useState([
@@ -30,7 +34,7 @@ function Chatbot() {
     try {
       const completion = await openai.chat.completions.create({
         messages: newMessages,
-        model: 'gpt-3.5-turbo',
+        model: 'gpt-4o-mini',
       });
 
       console.log('Received completion from OpenAI:', completion);
@@ -52,10 +56,39 @@ function Chatbot() {
     <View style={styles.chatbot}>
       <ScrollView style={styles.messages}>
         {messages.map((message, index) => (
-          <View key={index} style={styles.message}>
-            <Text style={message.role === 'assistant' ? styles.botMessage : message.role === 'system' ? styles.systemMessage : styles.userMessage}>
-              {message.content}
-            </Text>
+          <View key={index} style={styles.messageContainer}>
+            {message.role !== 'user' && (
+              <Avatar
+                rounded
+                size="medium"
+                containerStyle={styles.avatar}
+                source={{ uri: 'https://via.placeholder.com/150/FFB6C1/FFFFFF?text=B' }}
+              />
+            )}
+            <View style={[
+              styles.message, 
+              message.role === 'user' && styles.userMessageBubble
+            ]}>
+              <Text
+                style={
+                  message.role === 'assistant'
+                    ? styles.botMessage
+                    : message.role === 'system'
+                    ? styles.systemMessage
+                    : styles.userMessage
+                }
+              >
+                {message.content}
+              </Text>
+            </View>
+            {message.role === 'user' && (
+              <Avatar
+                rounded
+                size="medium"
+                containerStyle={styles.userAvatar}
+                source={{ uri: 'https://via.placeholder.com/150/ADD8E6/FFFFFF?text=U' }}
+              />
+            )}
           </View>
         ))}
       </ScrollView>
@@ -70,47 +103,62 @@ function Chatbot() {
   );
 }
 
-
 const styles = StyleSheet.create({
-    chatbot: {
-      flex: 1,
-      padding: 10,
-    },
-    messages: {
-      flex: 1,
-    },
-    message: {
-      marginBottom: 10,
-    },
-    systemMessage: {
-      backgroundColor: '#007bff', // Blue background
-      color: 'white',
-      padding: 10,
-      borderRadius: 20,
-      alignSelf: 'flex-start',
-    },
-    botMessage: {
-      backgroundColor: '#007bff', // Blue background
-      color: 'white',
-      padding: 10,
-      borderRadius: 20,
-      alignSelf: 'flex-start',
-    },
-    userMessage: {
-      backgroundColor: '#e0e0e0',
-      padding: 10,
-      borderRadius: 20,
-      alignSelf: 'flex-end',
-    },
-    input: {
-      height: 40,
-      borderColor: 'gray',
-      borderWidth: 1,
-      marginBottom: 10,
-      paddingHorizontal: 10,
-      borderRadius: 20,
-    },
-  });
+  chatbot: {
+    flex: 1,
+    padding: 10,
+  },
+  messages: {
+    flex: 1,
+  },
+  messageContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 10,
+    justifyContent: 'space-between',
+  },
+  avatar: {
+    marginRight: 10,
+  },
+  userAvatar: {
+    marginLeft: 10,
+  },
+  message: {
+    flex: 1,
+  },
+  userMessageBubble: {
+    flexDirection: 'row-reverse',
+    alignItems: 'center',
+  },
+  systemMessage: {
+    backgroundColor: '#F5908E',
+    color: 'white',
+    padding: 10,
+    borderRadius: 25,
+    alignSelf: 'flex-start',
+  },
+  botMessage: {
+    backgroundColor: '#F5908E',
+    color: 'white',
+    padding: 10,
+    borderRadius: 25,
+    alignSelf: 'flex-start',
+  },
+  userMessage: {
+    backgroundColor: '#FAC8C7',
+    color: 'black',
+    padding: 10,
+    borderRadius: 25,
+    alignSelf: 'flex-end',
+  },
+  input: {
+    height: 40,
+    borderColor: 'gray',
+    borderWidth: 1,
+    marginBottom: 10,
+    paddingHorizontal: 10,
+    borderRadius: 20,
+  },
+});
 
 export default Chatbot;
-

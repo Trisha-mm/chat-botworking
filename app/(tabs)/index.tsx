@@ -1,20 +1,8 @@
-import { Text, Image, SafeAreaView, StyleSheet, Platform } from 'react-native';
-
-import { HelloWave } from '@/components/HelloWave';
-import ParallaxScrollView from '@/components/ParallaxScrollView';
-import { ThemedText } from '@/components/ThemedText';
-import { ThemedView } from '@/components/ThemedView';
-import React from 'react';
+// index.tsx
+import React, { useState, useEffect } from 'react';
+import { SafeAreaView, StyleSheet } from 'react-native';
 import Chatbot from '@/components/Chatbot';
-
-
-export default function App() {
-  return (
-    <SafeAreaView style={styles.container}>
-      <Chatbot />
-    </SafeAreaView>
-  );
-}
+import WelcomeScreen from '@/components/WelcomeScreen';
 
 const styles = StyleSheet.create({
   container: {
@@ -22,3 +10,24 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
   },
 });
+
+export default function App() {
+  const [welcomeVisible, setWelcomeVisible] = useState(true);
+
+  useEffect(() => {
+    // Optionally, add logic to determine if the welcome screen should be shown
+  }, []);
+
+  const handleCloseWelcome = () => {
+    setWelcomeVisible(false);
+  };
+
+  return (
+    <SafeAreaView style={styles.container}>
+      <WelcomeScreen visible={welcomeVisible} onClose={handleCloseWelcome} />
+      <Chatbot />
+    </SafeAreaView>
+  );
+}
+
+;
