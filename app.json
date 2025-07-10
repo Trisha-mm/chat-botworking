@@ -1,8 +1,8 @@
 {
   "expo": {
     "name": "chat_bot.",
-    "slug": "chat_bot.",
-    "version": "1.0.0",
+    "slug": "chat_bot",
+    "version": "4.0.2",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
     "scheme": "myapp",
@@ -12,9 +12,15 @@
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
+    
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.trisha-m.chat-bot"
+      "buildNumber": "5", 
+      "bundleIdentifier": "com.trisha-m.chat-bot",
+      "entitlements": {
+        "aps-environment": "production"
+      }
+    
     },
     "android": {
       "adaptiveIcon": {
@@ -34,6 +40,12 @@
     ],
     "experiments": {
       "typedRoutes": true
-    }
+    },
+    "extra": {
+      "eas": {
+        "projectId": "4faabdc2-5818-4d63-bf85-19153d00c5aa"
+      }
+    },
+    "owner": "trisha_m"
   }
 }

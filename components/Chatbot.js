@@ -5,9 +5,9 @@ import OpenAI from 'openai';
 import { Avatar } from 'react-native-elements';
 
 // Import the API key from your .env file using react-native-dotenv
-import { OPENAI_API_KEY } from '@env';
 
-const openai = new OpenAI({ apiKey: OPENAI_API_KEY });
+
+const openai = new OpenAI({ apiKey: "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"});
 
 function Chatbot() {
   const [messages, setMessages] = useState([
@@ -66,7 +66,7 @@ function Chatbot() {
               />
             )}
             <View style={[
-              styles.message, 
+              styles.message,
               message.role === 'user' && styles.userMessageBubble
             ]}>
               <Text
