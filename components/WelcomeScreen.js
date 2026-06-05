@@ -14,7 +14,7 @@ export default function WelcomeScreen({ visible, onClose }) {
           <Text style={styles.descriptionText}>
             This app is designed to support your mental health journey!
             Whether you're seeking someone to talk to, a space to reflect, or a tool to help manage your wellbeing,
-            we are here for you. Please note that your data is not saved anywhere but your device. If you require urgent assistance, please contact help services (some can be found on the outreach page). 
+            we are here for you. Please note that the only data that is stored is your email. If you require urgent assistance, please contact help services (some can be found on the outreach page). 
             Please keep in mind, this app is a companion, not a substitute for professional help :)
           </Text>
         </View>

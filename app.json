@@ -1,8 +1,8 @@
 {
   "expo": {
-    "name": "chat_bot.",
+    "name": "Sway - State Legislation Finder",
     "slug": "chat_bot",
-    "version": "4.0.2",
+    "version": "4.0.3",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
     "scheme": "myapp",
@@ -12,15 +12,14 @@
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
-    
     "ios": {
       "supportsTablet": true,
-      "buildNumber": "5", 
+      "buildNumber": "6",
       "bundleIdentifier": "com.trisha-m.chat-bot",
+      "deploymentTarget": "16.4",
       "entitlements": {
         "aps-environment": "production"
       }
-    
     },
     "android": {
       "adaptiveIcon": {
@@ -36,7 +35,18 @@
     },
     "plugins": [
       "expo-router",
-      "expo-font"
+      "expo-font",
+      "expo-splash-screen",
+      "expo-status-bar",
+      "expo-web-browser",
+      [
+        "expo-build-properties",
+        {
+          "ios": {
+            "deploymentTarget": "16.4"
+          }
+        }
+      ]
     ],
     "experiments": {
       "typedRoutes": true
