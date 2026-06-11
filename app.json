@@ -2,7 +2,7 @@
   "expo": {
     "name": "Sway - State Legislation Finder",
     "slug": "chat_bot",
-    "version": "4.0.3",
+    "version": "5.0.2",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
     "scheme": "myapp",
@@ -19,6 +19,9 @@
       "deploymentTarget": "16.4",
       "entitlements": {
         "aps-environment": "production"
+      },
+      "infoPlist": {
+        "ITSAppUsesNonExemptEncryption": false
       }
     },
     "android": {
@@ -26,7 +29,13 @@
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "package": "com.trisha_m.chat_bot"
+      "package": "com.trisha_m.chat_bot",
+      "permissions": [
+        "android.permission.RECORD_AUDIO",
+        "android.permission.MODIFY_AUDIO_SETTINGS",
+        "android.permission.FOREGROUND_SERVICE",
+        "android.permission.FOREGROUND_SERVICE_MEDIA_PLAYBACK"
+      ]
     },
     "web": {
       "bundler": "metro",

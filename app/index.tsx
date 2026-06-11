@@ -34,7 +34,7 @@ export default function WelcomeScreen() {
         <StatusBar barStyle="dark-content" backgroundColor="#FFFFFF" />
         
         <Text style={styles.welcome}>Welcome to</Text>
-        <Text style={styles.title}>Serenity</Text>
+        <Text style={styles.title}>Sway</Text>
 
         <View style={styles.buttonContainer}>
           <Link
